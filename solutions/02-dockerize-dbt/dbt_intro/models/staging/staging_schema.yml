@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  - name: stg_yellow_taxi
+    description: Staging model for January 2025 yellow taxi trips.
+    columns:
+      - name: vendor_id
+        description: Vendor identifier from the source data.
+        data_tests:
+          - not_null
+      - name: pickup_datetime
+        description: Pickup timestamp.
+        data_tests:
+          - not_null
+      - name: dropoff_datetime
+        description: Dropoff timestamp.
+        data_tests:
+          - not_null
+      - name: trip_distance
+        description: Trip distance in miles.
+        data_tests:
+          - not_null
+      - name: store_and_fwd_flag
+        description: Whether the trip record was held in vehicle memory.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Y', 'N']
+      - name: payment_type
+        description: Payment type code.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('payment_type')
+                field: id
+              config:
+                where: "payment_type between 1 and 6"
+      - name: fare_amount
+        description: Metered fare amount.
+        data_tests:
+          - not_null
+      - name: total_amount
+        description: Final charged amount.
+        data_tests:
+          - not_null
+
+seeds:
+  - name: payment_type
+    columns:
+      - name: id
+        data_tests:
+          - not_null
+          - unique
+      - name: payment_type
+        data_tests:
+          - not_null
+          - unique

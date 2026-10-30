@@ -1,0 +1,24 @@
+dbt_intro:
+  outputs:
+
+    dev:
+      dbname: ny_taxi
+      host: localhost
+      pass: postgres
+      port: 5432
+      schema: dbt_dev
+      threads: 4
+      type: postgres
+      user: postgres
+
+    prod:
+      dbname: ny_taxi
+      host: localhost
+      pass: postgres
+      port: 5432
+      schema: dbt_prod
+      threads: 4
+      type: postgres
+      user: postgres
+
+  target: dev

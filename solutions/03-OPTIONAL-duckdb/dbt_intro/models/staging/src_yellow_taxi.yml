@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: src_yellow_taxi
+    schema: "{{ 'raw' if target.type == 'duckdb' else 'public' }}"
+    tables:
+      - name: yellow_taxi

@@ -1,0 +1,16 @@
+[project]
+name = "mle-datapipelines-with-dbt"
+version = "0.1.0"
+requires-python = ">=3.13.17"
+dependencies = [
+    "dbt-duckdb>=1.11.0",
+    "dbt-postgres>=1.11.0",
+    "pandas>=3.0.5",
+    "pyarrow>=25.0.1",
+    "sqlalchemy>=2.0.52",
+]
+
+[tool.uv]
+required-version = ">=0.13.5"
+# Apply certificate fixes without adding unused runtime packages.
+constraint-dependencies = ["certifi>=2026.10.19", "pip>=26.2.2"]
